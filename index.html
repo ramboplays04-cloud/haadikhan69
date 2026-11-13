@@ -230,9 +230,28 @@ function pageName(id){ const p = allPages().find(p => String(p.id)===String(id))
 // ---------------------------------------------------------------- views
 const V = {};
 
-V.setup = () => `
+// Easy login: after the owner sets up once, the GitHub token is saved here locked with the password,
+// so anyone with the link only needs the password.
+let EASY = null;
+async function loadEasy(){
+  try { const r = await fetch("login.json?_=" + Date.now(), { cache: "no-store" }); if (r.ok) { const d = await r.json(); if (d && d.token_enc) EASY = d; } } catch(e){}
+}
+async function saveEasy(){
+  const body = JSON.stringify({ repo: S.repo, token_enc: await encryptJSON({ token: S.token }, S.pass) }, null, 1) + "\n";
+  let sha; try { sha = (await gh(`/repos/${S.repo}/contents/login.json?ref=main&_=${Date.now()}`)).sha; } catch(e){}
+  await gh(`/repos/${S.repo}/contents/login.json`, { method:"PUT", body: JSON.stringify({ message:"easy login", content: utf8b64e(body), branch:"main", ...(sha ? { sha } : {}) }) });
+}
+V.setup = () => EASY && !S.token ? `
+  <h1>Welcome 👋</h1>
+  <p class="sub">Enter your password to open the app.</p>
+  <div class="card">
+    <label>Password</label>
+    <input id="s_pass" type="password" autocomplete="current-password">
+    <div style="margin-top:16px"><button class="btn primary full" id="s_easy">Open</button></div>
+    <div style="margin-top:14px" class="meta"><a href="#" id="s_full">Advanced: enter GitHub details manually</a></div>
+  </div>` : `
   <h1>First-time setup</h1>
-  <p class="sub">You only need to do this once. Steps are in the GUIDE.</p>
+  <p class="sub">You only need to do this once.</p>
   <div class="card">
     <label>GitHub repo <div class="hint">e.g. <code>faisal123/autoposter</code></div></label>
     <input id="s_repo" value="${esc(S.repo)}" autocapitalize="off" autocorrect="off">
@@ -240,15 +259,30 @@ V.setup = () => `
     <input id="s_token" value="${esc(S.token)}" type="password" autocapitalize="off" autocorrect="off" placeholder="github_pat_...">
     <label>Your password <div class="hint">The same one you saved in the GitHub Secret <code>APP_KEY</code>. It locks your Facebook tokens.</div></label>
     <input id="s_pass" value="${esc(S.pass)}" type="password">
+    <label class="check"><input type="checkbox" id="s_easyon" checked><span>Easy login on other phones<div class="hint">Other phones can open this app with only the password (the token is saved locked with the password)</div></span></label>
     <div style="margin-top:16px"><button class="btn primary full" id="s_save">Save & connect</button></div>
   </div>`;
 V.setup.bind = () => {
+  const ez = $("#s_easy");
+  if (ez){
+    ez.onclick = (e) => act(async () => {
+      const pass = $("#s_pass").value; if (!pass) throw new Error("Enter the password");
+      let tok; try { tok = (await decryptJSON(EASY.token_enc, pass)).token; } catch(err){ throw new Error("Wrong password"); }
+      S.repo = EASY.repo || S.repo; S.token = tok; S.pass = pass;
+      await gh(`/repos/${S.repo}`);
+      LS.set("repo", S.repo); LS.set("token", S.token); LS.set("pass", S.pass);
+      await loadAll(); toast("Welcome ✓"); location.hash = "#home"; render(); await finishFacebookLogin();
+    }, e.target);
+    $("#s_full").onclick = (e) => { e.preventDefault(); EASY = null; render(); };
+    return;
+  }
   $("#s_save").onclick = (e) => act(async () => {
     S.repo = $("#s_repo").value.trim().replace(/^https?:\/\/github\.com\//,"").replace(/\/$/,"");
     S.token = $("#s_token").value.trim(); S.pass = $("#s_pass").value;
     if (!S.repo || !S.token || !S.pass) throw new Error("Please fill in all three fields");
     await gh(`/repos/${S.repo}`);
     LS.set("repo", S.repo); LS.set("token", S.token); LS.set("pass", S.pass);
+    if ($("#s_easyon").checked) { try { await saveEasy(); } catch(err){ toast("Easy login could not be saved: " + err.message, true); } }
     await loadAll(); toast("Connected ✓"); location.hash = "#home"; render(); await finishFacebookLogin();
   }, e.target);
 };
@@ -703,6 +737,7 @@ document.addEventListener("visibilitychange", () => { if (!document.hidden && CF
   }
 })();
 (async () => {
+  if (!S.token) await loadEasy();
   if (S.token && S.repo && S.pass){
     try { await loadAll(); } catch(e){ toast(e.message, true); location.hash = "#setup"; }
     if (CFG) { try { await finishFacebookLogin(); } catch(e){ toast(e.message, true); } }
