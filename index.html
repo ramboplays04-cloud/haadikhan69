@@ -76,8 +76,9 @@ nav.bottom a.on{color:var(--accent)}
 "use strict";
 // ---------------------------------------------------------------- storage
 const LS = {
-  get(k){ try{ return localStorage.getItem("ap_"+k) || ""; }catch(e){ return ""; } },
-  set(k,v){ try{ localStorage.setItem("ap_"+k, v); }catch(e){} }
+  // own key names, so this app never mixes with another tool on the same website (e.g. /autoposter)
+  get(k){ try{ return localStorage.getItem("hk69_"+k) || ""; }catch(e){ return ""; } },
+  set(k,v){ try{ localStorage.setItem("hk69_"+k, v); }catch(e){} }
 };
 function guessRepo(){
   const h = location.hostname, seg = location.pathname.split("/").filter(Boolean)[0];
@@ -521,15 +522,15 @@ async function savePagesFromFacebook(pages, userToken){
 }
 function startFacebookLogin(){
   const ver = CFG.graph_version || "v23.0";
-  try { sessionStorage.setItem("ap_fb_state", String(Date.now())); } catch(e){}
+  try { sessionStorage.setItem("hk69_fb_state", String(Date.now())); } catch(e){}
   location.href = `https://www.facebook.com/${ver}/dialog/oauth?client_id=${encodeURIComponent(CFG.fb_app_id)}` +
     `&redirect_uri=${encodeURIComponent(redirectUri())}&response_type=token&scope=${FB_SCOPES}` +
-    `&state=${encodeURIComponent(sessionStorage.getItem("ap_fb_state")||"x")}`;
+    `&state=${encodeURIComponent(sessionStorage.getItem("hk69_fb_state")||"x")}`;
 }
 async function finishFacebookLogin(){
-  let short = ""; try { short = sessionStorage.getItem("ap_fb_token") || ""; } catch(e){}
+  let short = ""; try { short = sessionStorage.getItem("hk69_fb_token") || ""; } catch(e){}
   if (!short) return;
-  try { sessionStorage.removeItem("ap_fb_token"); } catch(e){}
+  try { sessionStorage.removeItem("hk69_fb_token"); } catch(e){}
   const ver = CFG.graph_version || "v23.0";
   let userToken = short;
   if (CFG.fb_secret_enc){
@@ -694,7 +695,7 @@ document.addEventListener("visibilitychange", () => { if (!document.hidden && CF
   const h = location.hash || "", q = new URLSearchParams(location.search);
   if (h.includes("access_token=")) {
     const p = new URLSearchParams(h.slice(1));
-    try { sessionStorage.setItem("ap_fb_token", p.get("access_token") || ""); } catch(e){}
+    try { sessionStorage.setItem("hk69_fb_token", p.get("access_token") || ""); } catch(e){}
     history.replaceState(null, "", location.pathname + "#pages");
   } else if (q.get("error") || q.get("error_reason")) {
     history.replaceState(null, "", location.pathname + "#pages");
