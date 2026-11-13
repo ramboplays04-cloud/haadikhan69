@@ -1,0 +1,9 @@
+{
+  "timezone": "Asia/Karachi",
+  "graph_version": "v23.0",
+  "check_minutes": 60,
+  "scan_limit": 30,
+  "max_attempts": 3,
+  "pages": [],
+  "accounts": []
+}

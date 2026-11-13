@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HAADIKHAN69</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#171a21">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="HAADIKHAN69">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1e222b;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa1b2;--accent:#ff2e63;--accent2:#25d0e8;--ok:#2ecc71;--warn:#f5a623;--bad:#ff5a5a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"SF Pro Text","Segoe UI",system-ui,sans-serif}
+a{color:var(--accent2);text-decoration:none}
+header{position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--line);padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;font-size:18px}.brand span{color:var(--accent)}
+#sync{font-size:12px;color:var(--muted)}
+main{max-width:760px;margin:0 auto;padding:16px 14px 110px}
+h1{font-size:22px;margin:4px 0 4px}h2{font-size:17px;margin:24px 0 10px}
+.sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat .n{font-size:26px;font-weight:800}.stat .l{color:var(--muted);font-size:13px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:10px;font-weight:600;font-size:15px;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.small{padding:7px 11px;font-size:13px}.btn.danger{color:var(--bad)}.btn.full{width:100%}
+.btn:disabled{opacity:.5}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.name{font-weight:700;font-size:16px}.meta{color:var(--muted);font-size:13px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.pill{font-size:12px;padding:2px 9px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);color:var(--muted)}
+.pill.ok{color:var(--ok);border-color:#24553a}.pill.bad{color:var(--bad);border-color:#5a2a2a}.pill.warn{color:var(--warn);border-color:#5a4520}.pill.info{color:var(--accent2);border-color:#1f4e57}
+.off{opacity:.55}
+label{display:block;font-weight:600;margin:14px 0 6px}
+.hint{color:var(--muted);font-size:13px;font-weight:400;margin-top:3px}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:11px 12px;font:inherit;font-size:16px}
+textarea{min-height:80px;resize:vertical}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin:12px 0}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+.log{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;padding:7px 0;border-bottom:1px solid var(--line);word-break:break-word}
+.log .t{color:var(--muted);margin-right:6px}.lv-error{color:var(--bad)}.lv-success{color:var(--ok)}
+.empty{text-align:center;color:var(--muted);padding:28px 8px}
+.vid{border-bottom:1px solid var(--line);padding:10px 0}.vid:last-child{border:0}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:10px 0}
+.tabs .btn{white-space:nowrap}
+.notice{border-color:#5a4520}
+code{background:var(--panel2);padding:1px 6px;border-radius:5px;font-size:13px}
+nav.bottom{position:fixed;left:0;right:0;bottom:0;background:var(--panel);border-top:1px solid var(--line);display:flex;z-index:10;padding-bottom:env(safe-area-inset-bottom)}
+nav.bottom a{flex:1;text-align:center;color:var(--muted);font-size:11px;font-weight:600;padding:8px 2px 8px}
+nav.bottom a .i{display:block;font-size:21px;line-height:1.25}
+nav.bottom a.on{color:var(--accent)}
+#toast{position:fixed;left:14px;right:14px;bottom:calc(84px + env(safe-area-inset-bottom));background:#222836;border:1px solid var(--line);color:var(--text);padding:12px 14px;border-radius:12px;z-index:20;display:none;font-size:14px}
+#toast.err{border-color:#5a2a2a;color:#ffb0b0}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--muted);border-top-color:transparent;border-radius:50%;animation:s 1s linear infinite;vertical-align:-2px}
+@keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<header><div class="brand">HAADIKHAN<span>69</span></div><div id="sync"></div></header>
+<main id="app"><div class="empty"><span class="spin"></span> Loading…</div></main>
+<nav class="bottom" id="nav">
+  <a href="#home" data-r="home"><span class="i">🏠</span>Home</a>
+  <a href="#add" data-r="add"><span class="i">➕</span>Account</a>
+  <a href="#pages" data-r="pages"><span class="i">📘</span>Pages</a>
+  <a href="#logs" data-r="logs"><span class="i">📋</span>Logs</a>
+  <a href="#settings" data-r="settings"><span class="i">⚙️</span>Settings</a>
+</nav>
+<div id="toast"></div>
+
+<script>
+"use strict";
+// ---------------------------------------------------------------- storage
+const LS = {
+  get(k){ try{ return localStorage.getItem("ap_"+k) || ""; }catch(e){ return ""; } },
+  set(k,v){ try{ localStorage.setItem("ap_"+k, v); }catch(e){} }
+};
+function guessRepo(){
+  const h = location.hostname, seg = location.pathname.split("/").filter(Boolean)[0];
+  if (h.endsWith(".github.io")) return h.replace(".github.io","") + "/" + (seg || h);
+  return "";
+}
+const S = { token: LS.get("token"), repo: LS.get("repo") || guessRepo(), pass: LS.get("pass") };
+let CFG = null, CFG_SHA = null, STATE = {}, RUNS = [];
+
+// ---------------------------------------------------------------- utils
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const short = (s, n=80) => { s = String(s||"").replace(/\s+/g," "); return s.length>n ? s.slice(0,n)+"…" : s; };
+const enc = (s) => new TextEncoder().encode(s);
+const b64e = (u8) => { let s=""; u8.forEach(b => s += String.fromCharCode(b)); return btoa(s); };
+const b64d = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const utf8b64e = (str) => b64e(enc(str));
+const utf8b64d = (b) => new TextDecoder().decode(b64d(b.replace(/\s/g,"")));
+let toastT;
+function toast(msg, err){ const t=$("#toast"); t.textContent=msg; t.className=err?"err":""; t.style.display="block"; clearTimeout(toastT); toastT=setTimeout(()=>t.style.display="none", err?6000:3500); }
+function uid(){ return "a" + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function userOf(url){ const m=String(url||"").match(/tiktok\.com\/@([^/?#]+)/); return m ? m[1] : String(url||"").replace(/^@/,""); }
+function normUrl(t){ t=String(t||"").trim(); if(!t) return ""; if(t.startsWith("http")) return t.split("?")[0].replace(/\/$/,""); return "https://www.tiktok.com/@"+t.replace(/^@/,""); }
+function parseTimes(t){ return [...new Set(String(t||"").split(/[,\s]+/).map(p=>{const m=p.match(/^(\d{1,2}):(\d{2})$/); if(!m) return null; const h=+m[1], mi=+m[2]; if(h>23||mi>59) return null; return String(h).padStart(2,"0")+":"+String(mi).padStart(2,"0");}).filter(Boolean))].sort(); }
+
+// ---------------------------------------------------------------- crypto (Page tokens password se lock)
+async function deriveKey(pass, salt){
+  const km = await crypto.subtle.importKey("raw", enc(pass), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({name:"PBKDF2", salt, iterations:200000, hash:"SHA-256"}, km, {name:"AES-GCM", length:256}, false, ["encrypt","decrypt"]);
+}
+async function encryptJSON(obj, pass){
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM", iv}, await deriveKey(pass, salt), enc(JSON.stringify(obj))));
+  const out = new Uint8Array(28 + ct.length); out.set(salt,0); out.set(iv,16); out.set(ct,28);
+  return b64e(out);
+}
+async function decryptJSON(b64, pass){
+  const raw = b64d(b64);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv: raw.slice(16,28)}, await deriveKey(pass, raw.slice(0,16)), raw.slice(28));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+async function getTokens(){
+  if (!CFG.tokens_enc) return {};
+  try { return await decryptJSON(CFG.tokens_enc, S.pass); }
+  catch(e){ throw new Error("Wrong password: enter the same password you used before (Settings)"); }
+}
+
+// ---------------------------------------------------------------- phone notifications (Web Push)
+const b64u = (u8) => b64e(new Uint8Array(u8)).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const b64uDec = (s) => b64d(s.replace(/-/g,"+").replace(/_/g,"/") + "===".slice((s.length + 3) % 4));
+const SW = ("serviceWorker" in navigator) ? navigator.serviceWorker.register("sw.js").catch(() => null) : Promise.resolve(null);
+async function pushStatus(){
+  if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window))
+    return "Not available here - open the app from its Home Screen icon (iPhone iOS 16.4 or newer)";
+  if (Notification.permission === "denied") return "Blocked - iPhone Settings → Notifications → Auto Poster → Allow";
+  try { const reg = await SW; const sub = reg && await reg.pushManager.getSubscription(); if (sub && CFG.push_enc) return "ON for this phone ✓"; } catch(e){}
+  return "Off";
+}
+async function enablePush(){
+  if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window))
+    throw new Error("Open this app from its Home Screen icon (not Chrome/Safari). iPhone allows notifications only there.");
+  const perm = await Notification.requestPermission();
+  if (perm !== "granted") throw new Error("Notifications not allowed. iPhone Settings → Notifications → Auto Poster → Allow");
+  let data = null;
+  if (CFG.push_enc) { try { data = await decryptJSON(CFG.push_enc, S.pass); } catch(e){ throw new Error("Wrong password (Settings → Change GitHub token / password)"); } }
+  if (!data || !data.vapid_d || !CFG.push_pub){
+    const kp = await crypto.subtle.generateKey({ name:"ECDSA", namedCurve:"P-256" }, true, ["sign"]);
+    const jwk = await crypto.subtle.exportKey("jwk", kp.privateKey);
+    CFG.push_pub = b64u(await crypto.subtle.exportKey("raw", kp.publicKey));
+    data = { vapid_d: jwk.d, subs: [] };
+  }
+  const reg = (await SW) || await navigator.serviceWorker.register("sw.js");
+  await navigator.serviceWorker.ready;
+  let sub = await reg.pushManager.getSubscription();
+  if (sub){ const k = sub.options && sub.options.applicationServerKey; if (!k || b64u(k) !== CFG.push_pub){ await sub.unsubscribe(); sub = null; } }
+  if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64uDec(CFG.push_pub) });
+  const j = sub.toJSON();
+  data.subs = (data.subs || []).filter(x => x.endpoint !== j.endpoint);
+  data.subs.push({ endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth, added: new Date().toISOString().slice(0,10) });
+  CFG.push_enc = await encryptJSON(data, S.pass);
+  await saveConfig("phone notifications on");
+}
+
+// ---------------------------------------------------------------- GitHub API
+async function gh(path, opt={}){
+  const r = await fetch("https://api.github.com" + path, {
+    ...opt, cache: "no-store",
+    headers: { "Authorization": "Bearer " + S.token, "Accept": "application/vnd.github+json",
+               "X-GitHub-Api-Version": "2022-11-28", ...(opt.headers||{}) }
+  });
+  if (!r.ok){
+    let msg = r.status + "";
+    try { msg = (await r.json()).message || msg; } catch(e){}
+    if (r.status === 401) msg = "GitHub token is wrong or expired (add a new one in Settings)";
+    if (r.status === 404) msg = "Repo or file not found (check the repo name / token permissions)";
+    if (r.status === 403) msg = "Token has no permission: " + msg;
+    const e = new Error(msg); e.status = r.status; throw e;
+  }
+  return r.status === 204 ? null : r.json();
+}
+async function readJSONFile(name){
+  const d = await gh(`/repos/${S.repo}/contents/${name}?ref=main&_=${Date.now()}`);
+  return { sha: d.sha, data: JSON.parse(utf8b64d(d.content) || "{}") };
+}
+async function loadAll(){
+  $("#sync").innerHTML = '<span class="spin"></span>';
+  try {
+    const [c, s] = await Promise.all([readJSONFile("config.json"), readJSONFile("state.json").catch(()=>({data:{}}))]);
+    CFG = c.data; CFG_SHA = c.sha; STATE = s.data || {};
+    CFG.accounts = CFG.accounts || []; CFG.pages = CFG.pages || [];
+    gh(`/repos/${S.repo}/actions/runs?per_page=5&_=${Date.now()}`).then(r => { RUNS = r.workflow_runs || []; if (route().name==="home") render(); }).catch(()=>{});
+    $("#sync").textContent = STATE.last_run ? "Last run " + STATE.last_run.slice(5) : "";
+  } catch(e){ $("#sync").textContent = ""; throw e; }
+}
+async function saveConfig(msg){
+  const body = JSON.stringify(CFG, null, 2) + "\n";
+  const put = () => gh(`/repos/${S.repo}/contents/config.json`, { method:"PUT", body: JSON.stringify({ message: msg || "config update (app)", content: utf8b64e(body), sha: CFG_SHA, branch:"main" }) });
+  let r;
+  try { r = await put(); }
+  catch(e){
+    if (e.status === 409 || e.status === 422){ const fresh = await readJSONFile("config.json"); CFG_SHA = fresh.sha; r = await put(); }
+    else throw e;
+  }
+  CFG_SHA = r.content.sha;
+}
+async function dispatch(action, account="", video=""){
+  await gh(`/repos/${S.repo}/actions/workflows/autopost.yml/dispatches`, { method:"POST", body: JSON.stringify({ ref:"main", inputs:{ action, account, video } }) });
+  toast("Request sent ✓ GitHub will do it in 1-3 minutes. Then pull down to refresh.");
+}
+
+// ---------------------------------------------------------------- router
+function route(){ const [name, id] = (location.hash.replace("#","") || "home").split("/"); return { name, id }; }
+window.addEventListener("hashchange", render);
+async function act(fn, btn){
+  if (btn){ btn.disabled = true; btn.dataset.t = btn.innerHTML; btn.innerHTML = '<span class="spin"></span>'; }
+  try { await fn(); } catch(e){ toast(e.message || String(e), true); }
+  finally { if (btn && btn.isConnected){ btn.disabled = false; btn.innerHTML = btn.dataset.t; } }
+}
+
+const ST_LABEL = {uploaded:["Uploaded","ok"], failed:["Fail","bad"], retry:["Will retry","warn"], new:["Queue","info"], skipped:["Skipped",""]};
+function accStats(id){
+  const v = ((STATE.accounts||{})[id]||{}).videos || [];
+  return { queue: v.filter(x=>x.status==="new"||x.status==="retry").length, up: v.filter(x=>x.status==="uploaded").length,
+           fail: v.filter(x=>x.status==="failed").length, last: ((STATE.accounts||{})[id]||{}).last_checked };
+}
+function allPages(){ const out = [], seen = new Set(); (CFG.pages||[]).concat(STATE.fb_pages||[]).forEach(p => { const k = String(p.id); if (!seen.has(k)) { seen.add(k); out.push(p); } }); return out; }
+function pageName(id){ const p = allPages().find(p => String(p.id)===String(id)); return p ? p.name : ""; }
+
+// ---------------------------------------------------------------- views
+const V = {};
+
+V.setup = () => `
+  <h1>First-time setup</h1>
+  <p class="sub">You only need to do this once. Steps are in the GUIDE.</p>
+  <div class="card">
+    <label>GitHub repo <div class="hint">e.g. <code>faisal123/autoposter</code></div></label>
+    <input id="s_repo" value="${esc(S.repo)}" autocapitalize="off" autocorrect="off">
+    <label>GitHub token <div class="hint">github.com → Settings → Developer settings → Fine-grained token (Contents + Actions: Read and write)</div></label>
+    <input id="s_token" value="${esc(S.token)}" type="password" autocapitalize="off" autocorrect="off" placeholder="github_pat_...">
+    <label>Your password <div class="hint">The same one you saved in the GitHub Secret <code>APP_KEY</code>. It locks your Facebook tokens.</div></label>
+    <input id="s_pass" value="${esc(S.pass)}" type="password">
+    <div style="margin-top:16px"><button class="btn primary full" id="s_save">Save & connect</button></div>
+  </div>`;
+V.setup.bind = () => {
+  $("#s_save").onclick = (e) => act(async () => {
+    S.repo = $("#s_repo").value.trim().replace(/^https?:\/\/github\.com\//,"").replace(/\/$/,"");
+    S.token = $("#s_token").value.trim(); S.pass = $("#s_pass").value;
+    if (!S.repo || !S.token || !S.pass) throw new Error("Please fill in all three fields");
+    await gh(`/repos/${S.repo}`);
+    LS.set("repo", S.repo); LS.set("token", S.token); LS.set("pass", S.pass);
+    await loadAll(); toast("Connected ✓"); location.hash = "#home"; render(); await finishFacebookLogin();
+  }, e.target);
+};
+
+V.home = () => {
+  let up=0, qu=0, fa=0, today=0; const d = new Date(), td = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  Object.values(STATE.accounts||{}).forEach(a => (a.videos||[]).forEach(v => { if(v.status==="uploaded"){up++; if((v.uploaded||"").startsWith(td)) today++;} if(v.status==="new"||v.status==="retry") qu++; if(v.status==="failed") fa++; }));
+  const errs = (STATE.log||[]).filter(l => l.l==="error" && !l.a).slice(0,1);
+  const run = RUNS[0];
+  const runTxt = run ? (run.status!=="completed" ? '<span class="pill warn">Running now…</span>' : (run.conclusion==="success" ? '<span class="pill ok">Last run OK</span>' : `<span class="pill bad">Last run: ${esc(run.conclusion)}</span>`)) : "";
+  return `
+  <h1>Dashboard</h1>
+  <p class="sub">GitHub runs the tool automatically every ~30 minutes. ${STATE.last_run ? "Last run: "+esc(STATE.last_run) : "No run yet."} ${runTxt}</p>
+  <div class="stats">
+    <div class="card stat"><div class="n">${today}</div><div class="l">Uploaded today</div></div>
+    <div class="card stat"><div class="n">${up}</div><div class="l">Total uploaded</div></div>
+    <div class="card stat"><div class="n">${qu}</div><div class="l">In queue</div></div>
+    <div class="card stat"><div class="n" style="color:var(--bad)">${fa}</div><div class="l">Failed</div></div>
+  </div>
+  ${!(CFG.fb_user_enc || CFG.tokens_enc || CFG.make_enc) ? `<div class="card notice"><b>First step:</b> Connect Facebook. <a class="btn small primary" style="margin-left:6px" href="#pages">Connect</a></div>` : (!allPages().length ? `<div class="card notice"><b>Next step:</b> Create a Facebook Page, then tap Refresh my Pages. <a class="btn small primary" style="margin-left:6px" href="#pages">Pages</a></div>` : "")}
+  ${(() => { if (!STATE.last_run) return ""; const h = (Date.now() - new Date(STATE.last_run.replace(" ", "T") + ":00+05:00")) / 36e5;
+      return h >= 2 ? `<div class="card notice lv-error"><b>⚠ GitHub has not run the tool for ${Math.floor(h)} hours.</b> Tap “Run full check now”. If it keeps happening, tell Claude.</div>` : ""; })()}
+  ${CFG.paused ? `<div class="card notice" style="color:var(--warn)"><b>⏸ All uploads are paused.</b> Videos stay in the queue. Tap “Resume all” to start again.</div>` : ""}
+  ${STATE.fb_error ? `<div class="card notice lv-error">${esc(STATE.fb_error)}</div>` : ""}
+  ${errs.map(l => `<div class="card notice lv-error">${esc(l.m)}</div>`).join("")}
+  <div class="row" style="margin:6px 0 4px"><button class="btn small" id="h_run">▶ Run full check now</button><button class="btn small" id="h_ref">↻ Refresh</button><button class="btn small ${CFG.paused?"primary":""}" id="h_pause">${CFG.paused ? "▶ Resume all" : "⏸ Pause all"}</button></div>
+  <h2>Accounts (${CFG.accounts.length})</h2>
+  ${CFG.accounts.length ? "" : `<div class="card empty">No TikTok accounts yet.<br><br><a class="btn primary" href="#add">+ Add account</a></div>`}
+  ${CFG.accounts.map(a => { const s = accStats(a.id); return `
+    <div class="card ${a.enabled===false?"off":""}">
+      <div class="name"><a href="#acc/${a.id}">@${esc(userOf(a.tiktok))}</a> ${a.enabled===false?'<span class="pill warn">Paused</span>':""}</div>
+      <div class="meta">→ ${esc(pageName(a.page_id) || "⚠ No Page selected")} · ${a.mode==="video"?"Video":"Reel"} · ${esc((a.times||[]).join(", "))} (${a.per_slot||1} per time)</div>
+      <div class="pills"><span class="pill info">Queue ${s.queue}</span><span class="pill ok">Uploaded ${s.up}</span>${s.fail?`<span class="pill bad">Failed ${s.fail}</span>`:""}<span class="pill">Checked: ${esc(s.last ? s.last.slice(5) : "not yet")}</span></div>
+      <div class="row">
+        <button class="btn small primary" data-up="${a.id}">Upload Now</button>
+        <button class="btn small" data-scan="${a.id}">Check Now</button>
+        <a class="btn small" href="#edit/${a.id}">Edit</a>
+        <button class="btn small" data-tog="${a.id}">${a.enabled===false?"Resume":"Pause"}</button>
+      </div>
+    </div>`; }).join("")}`;
+};
+V.home.bind = () => {
+  $("#h_run").onclick = (e) => act(() => dispatch("auto"), e.target);
+  $("#h_ref").onclick = (e) => act(async () => { await loadAll(); render(); }, e.target);
+  $("#h_pause").onclick = (e) => {
+    if (!CFG.paused && !confirm("Pause ALL automatic uploads? (Videos stay in the queue)")) return;
+    act(async () => { CFG.paused = !CFG.paused; await saveConfig(CFG.paused ? "pause all" : "resume all");
+      toast(CFG.paused ? "All uploads paused ⏸" : "Uploads resumed ▶"); render(); }, e.target);
+  };
+  document.querySelectorAll("[data-up]").forEach(b => b.onclick = () => act(() => dispatch("upload_now", b.dataset.up), b));
+  document.querySelectorAll("[data-scan]").forEach(b => b.onclick = () => act(() => dispatch("scan", b.dataset.scan), b));
+  document.querySelectorAll("[data-tog]").forEach(b => b.onclick = () => act(async () => {
+    const a = CFG.accounts.find(x => x.id === b.dataset.tog); a.enabled = a.enabled === false; await saveConfig("toggle account"); render();
+  }, b));
+};
+
+function accountForm(a){
+  const p = allPages();
+  return `
+  <div class="card">
+    <label>TikTok account link <div class="hint">${a ? "" : "For multiple accounts, put each on a new line. "}e.g. <code>@username</code> or the full link</div></label>
+    ${a ? `<input id="f_tt" value="${esc(a.tiktok)}" autocapitalize="off" autocorrect="off">` : `<textarea id="f_tt" placeholder="@account1&#10;@account2" autocapitalize="off" autocorrect="off"></textarea>`}
+    <label>Facebook Page</label>
+    <select id="f_page"><option value="">— Choose a Page —</option>${p.map(x => `<option value="${esc(x.id)}" ${a && String(a.page_id)===String(x.id)?"selected":""}>${esc(x.name)}</option>`).join("")}</select>
+    ${p.length ? "" : `<div class="hint">First <a href="#pages">connect Facebook</a></div>`}
+    <label>Daily upload times <div class="hint">e.g. <code>09:00, 14:00, 21:00</code> (Pakistan time). Uploads may run 30-60 minutes late.</div></label>
+    <input id="f_times" value="${esc(a ? (a.times||[]).join(", ") : "10:00, 18:00")}">
+    <label>Videos per time slot</label>
+    <input id="f_per" type="number" min="1" max="5" value="${a ? (a.per_slot||1) : 1}">
+    <label>Post on Facebook as</label>
+    <select id="f_mode"><option value="reel">Reel (best)</option><option value="video" ${a && a.mode==="video"?"selected":""}>Normal video</option></select>
+    <h2>Caption</h2>
+    <label class="check"><input type="checkbox" id="f_cap" ${!a || a.use_caption!==false ? "checked":""}><span>Copy the TikTok caption</span></label>
+    <label class="check"><input type="checkbox" id="f_hash" ${a && a.remove_hashtags ? "checked":""}><span>Remove TikTok hashtags</span></label>
+    <label>Add below every caption (optional)</label>
+    <textarea id="f_extra" placeholder="#facebookreels">${esc(a ? a.extra||"" : "")}</textarea>
+    <label class="check"><input type="checkbox" id="f_skipex" ${!a || a.skip_existing!==false ? "checked":""}><span>Skip videos that are already on the Page<div class="hint">The tool looks at the videos themselves (pictures + sound + length), not the caption. Any TikTok video that is already on the Page (e.g. uploaded by hand) is skipped.</div></span></label>
+    <label class="check"><input type="checkbox" id="f_old" ${!a || a.import_old!==false ? "checked":""}><span>Also upload old videos<div class="hint">Untick to upload only new videos (affects the first check only)</div></span></label>
+    <div style="margin-top:14px"><button class="btn primary full" id="f_save">${a ? "Save" : "Add"}</button></div>
+  </div>
+  ${a ? `<button class="btn danger full" id="f_del">Delete account</button>` : ""}`;
+}
+function formValues(){
+  return { page_id: $("#f_page").value, times: parseTimes($("#f_times").value), per_slot: Math.max(1, Math.min(5, +$("#f_per").value || 1)),
+           mode: $("#f_mode").value, use_caption: $("#f_cap").checked, remove_hashtags: $("#f_hash").checked,
+           extra: $("#f_extra").value.trim(), import_old: $("#f_old").checked, skip_existing: $("#f_skipex").checked };
+}
+V.add = () => `<h1>Add TikTok account</h1><p class="sub">Paste the link, choose a Page, set the times. The tool does the rest.</p>
+  <a class="card" href="#bulk" style="display:block;border-color:#1f4e57"><b>⚡ Many accounts?</b> <span class="meta">Paste all TikTok links at once - each one is matched to its Facebook Page automatically.</span></a>` + accountForm(null);
+V.add.bind = () => {
+  $("#f_save").onclick = (e) => act(async () => {
+    const lines = $("#f_tt").value.split("\n").map(normUrl).filter(Boolean);
+    if (!lines.length) throw new Error("Enter a TikTok link");
+    const vals = formValues(); if (!vals.times.length) throw new Error("Enter valid times, e.g. 10:00");
+    let n = 0;
+    for (const url of lines){ if (CFG.accounts.some(a => normUrl(a.tiktok) === url)) continue; CFG.accounts.push({ id: uid(), tiktok: url, enabled: true, ...vals }); n++; }
+    if (!n) throw new Error("These account(s) are already added");
+    await saveConfig("add account"); toast(n + " account(s) added ✓ They will be checked on the next run.");
+    location.hash = "#home";
+  }, e.target);
+};
+// ---------------------------------------------------------------- bulk add with automatic Page matching
+const normName = (t) => String(t||"").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]/g, "");
+function lev(a, b){
+  const m = a.length, n = b.length; if (!m || !n) return Math.max(m, n);
+  let prev = Array.from({length: n+1}, (_, j) => j);
+  for (let i = 1; i <= m; i++){ const cur = [i]; for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j]+1, cur[j-1]+1, prev[j-1] + (a[i-1]===b[j-1]?0:1)); prev = cur; }
+  return prev[n];
+}
+function matchScore(user, pageName){
+  const a = normName(user), b = normName(pageName); if (!a || !b) return 0;
+  if (a === b) return 100;
+  const sim = 1 - lev(a, b) / Math.max(a.length, b.length);
+  let s = sim * 80;
+  if (a.includes(b) || b.includes(a)) s = Math.max(s, 70 + 25 * Math.min(a.length, b.length) / Math.max(a.length, b.length));
+  const words = String(pageName).toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 3);
+  if (words.length){ const hit = words.filter(w => a.includes(w)).length / words.length; s = Math.max(s, 50 + 40 * hit * (hit === 1 ? 1 : 0.8)); }
+  return Math.round(s);
+}
+function autoMatch(users, pages){
+  const pairs = [];
+  users.forEach((u, i) => pages.forEach(p => pairs.push({ i, id: String(p.id), sc: matchScore(u, p.name) })));
+  pairs.sort((x, y) => y.sc - x.sc);
+  const res = users.map(() => ({ id: "", sc: 0 })), usedU = new Set(), usedP = new Set();
+  for (const p of pairs){ if (p.sc < 60) break; if (usedU.has(p.i) || usedP.has(p.id)) continue; res[p.i] = { id: p.id, sc: p.sc }; usedU.add(p.i); usedP.add(p.id); }
+  return res;
+}
+let BULK = [];
+const DEFAULT_TPL = { times: ["22:05"], per_slot: 2, mode: "reel", use_caption: true, remove_hashtags: false, extra: "", import_old: true, skip_existing: true };
+V.bulk = () => {
+  const pages = allPages();
+  const tplOpts = CFG.accounts.map(a => `<option value="${a.id}">@${esc(userOf(a.tiktok))} (${esc((a.times||[]).join(", "))}, ${a.per_slot||1} per time, ${a.mode==="video"?"Video":"Reel"})</option>`).join("");
+  return `
+  <h1>Add many accounts</h1>
+  <p class="sub">Paste all your TikTok links (one per line). Each one is matched to the Facebook Page with the same / closest name. Check the list, fix anything marked ⚠, then tap Add all.</p>
+  <div class="card">
+    <label>TikTok links <div class="hint">One per line. If the TikTok name is different from the Page name, write the Page name after the link: <code>tiktok.com/@a_biology_teacher Hidden Badge</code>. Already-added accounts are skipped.</div></label>
+    <textarea id="b_tt" style="min-height:150px" placeholder="https://www.tiktok.com/@account1&#10;https://www.tiktok.com/@account2" autocapitalize="off" autocorrect="off"></textarea>
+    <label>Use the same settings as</label>
+    <select id="b_tpl">${tplOpts}<option value="">Default (22:05, 2 per time, Reel)</option></select>
+    <div class="hint">Times, videos per time, Reel/Video and caption settings are copied. Only the Page is different.</div>
+    ${pages.length ? "" : `<div class="hint lv-error">No Pages yet - first go to Pages and tap Refresh my Pages.</div>`}
+    <div style="margin-top:12px"><button class="btn primary full" id="b_match">⚡ Match with my Pages (${pages.length})</button></div>
+  </div>
+  <div id="b_res"></div>`;
+};
+function bulkResult(){
+  const pages = allPages();
+  if (!BULK.length) return "";
+  const ok = BULK.filter(r => r.page).length;
+  const opts = (sel) => `<option value="">— Choose a Page —</option>` + pages.map(p => `<option value="${esc(p.id)}" ${String(sel)===String(p.id)?"selected":""}>${esc(p.name)}</option>`).join("");
+  return `
+  <h2>Check the matches (${ok}/${BULK.length} matched)</h2>
+  <div class="card">${BULK.map((r, i) => `
+    <div class="vid"><div class="name">@${esc(r.user)}${r.hint ? ` <span class="meta">(${esc(r.hint)})</span>` : ""} ${r.page ? (r.auto ? `<span class="pill ok">auto ✓</span>` : `<span class="pill info">chosen</span>`) : `<span class="pill warn">⚠ choose</span>`}</div>
+    <select data-bp="${i}" style="margin-top:6px">${opts(r.page)}</select></div>`).join("")}</div>
+  <button class="btn primary full" id="b_add">Add all ${ok} account${ok===1?"":"s"}</button>
+  ${ok < BULK.length ? `<div class="hint" style="margin-top:6px">Accounts without a Page are not added.</div>` : ""}`;
+}
+V.bulk.bind = () => {
+  const draw = () => { $("#b_res").innerHTML = bulkResult(); bindRes(); };
+  const bindRes = () => {
+    document.querySelectorAll("[data-bp]").forEach(sel => sel.onchange = () => { const r = BULK[+sel.dataset.bp]; r.page = sel.value; r.auto = false; draw(); });
+    const add = $("#b_add"); if (add) add.onclick = (e) => act(async () => {
+      const tplAcc = CFG.accounts.find(a => a.id === $("#b_tpl").value);
+      const tpl = tplAcc ? { times: tplAcc.times, per_slot: tplAcc.per_slot||1, mode: tplAcc.mode||"reel", use_caption: tplAcc.use_caption!==false,
+                             remove_hashtags: !!tplAcc.remove_hashtags, extra: tplAcc.extra||"", import_old: tplAcc.import_old!==false,
+                             skip_existing: tplAcc.skip_existing!==false } : DEFAULT_TPL;
+      let n = 0;
+      for (const r of BULK){ if (!r.page || CFG.accounts.some(a => normUrl(a.tiktok) === r.url)) continue;
+        CFG.accounts.push({ id: uid(), tiktok: r.url, enabled: true, page_id: r.page, ...JSON.parse(JSON.stringify(tpl)) }); n++; }
+      if (!n) throw new Error("Nothing to add - choose a Page for each account");
+      await saveConfig(`bulk add ${n} accounts`); BULK = [];
+      toast(`${n} account${n===1?"":"s"} added ✓ They will be checked on the next run.`); location.hash = "#home";
+    }, e.target);
+  };
+  $("#b_match").onclick = () => {
+    const seen = new Set(), users = [];
+    $("#b_tt").value.split(/\n+/).map(x => x.trim()).filter(Boolean).forEach(line => {
+      // "link" or "@user" alone, or with the Page name on the same line: "link Hidden Badge"
+      let m = line.match(/(?:https?:\/\/)?(?:www\.|vm\.|m\.)?tiktok\.com\/@([^/?#\s]+)\S*/i), hint = "";
+      if (m) hint = line.replace(m[0], "");
+      else { m = line.match(/^@?([A-Za-z0-9._]{2,})(?=\s|$)/); if (m) hint = line.slice(m[0].length); }
+      if (!m) return;
+      hint = hint.replace(/^[\s\-–—:|,=>→]+|[\s\-–—:|,]+$/g, "").trim();
+      const url = "https://www.tiktok.com/@" + m[1];
+      if (seen.has(url.toLowerCase()) || CFG.accounts.some(a => normUrl(a.tiktok).toLowerCase() === url.toLowerCase())) return;
+      seen.add(url.toLowerCase()); users.push({ user: m[1], url, hint });
+    });
+    if (!users.length) return toast("No new TikTok links found (already added ones are skipped)", true);
+    const taken = new Set(CFG.accounts.map(a => String(a.page_id)));
+    const free = allPages().filter(p => !taken.has(String(p.id)));
+    const m = autoMatch(users.map(u => u.hint || u.user), free.length ? free : allPages());
+    BULK = users.map((u, i) => ({ ...u, page: m[i].id, auto: !!m[i].id }));
+    draw(); $("#b_res").scrollIntoView({ behavior: "smooth" });
+  };
+  if (BULK.length) draw();
+};
+
+V.edit = (id) => { const a = CFG.accounts.find(x => x.id === id); return a ? `<h1>Edit @${esc(userOf(a.tiktok))}</h1>` + accountForm(a) : `<div class="empty">Account not found</div>`; };
+V.edit.bind = (id) => {
+  const a = CFG.accounts.find(x => x.id === id); if (!a) return;
+  $("#f_save").onclick = (e) => act(async () => {
+    const vals = formValues(); if (!vals.times.length) throw new Error("Enter valid times");
+    Object.assign(a, vals, { tiktok: normUrl($("#f_tt").value) });
+    await saveConfig("edit account"); toast("Saved ✓"); location.hash = "#home";
+  }, e.target);
+  $("#f_del").onclick = (e) => { if (!confirm("Delete this account?")) return; act(async () => {
+    CFG.accounts = CFG.accounts.filter(x => x.id !== id); await saveConfig("delete account"); toast("Deleted"); location.hash = "#home";
+  }, e.target); };
+};
+
+let VF = "";
+V.acc = (id) => {
+  const a = CFG.accounts.find(x => x.id === id); if (!a) return `<div class="empty">Account not found</div>`;
+  const all = (((STATE.accounts||{})[id]||{}).videos || []).slice();
+  const s = accStats(id);
+  let vids = all.filter(v => !VF || (VF==="queue" ? (v.status==="new"||v.status==="retry") : v.status===VF));
+  const open = vids.filter(v => v.status==="new"||v.status==="retry"), rest = vids.filter(v => !(v.status==="new"||v.status==="retry")).reverse();
+  vids = open.concat(rest).slice(0, 200);
+  const tab = (k, l) => `<button class="btn small ${VF===k?"primary":""}" data-vf="${k}">${l}</button>`;
+  return `
+  <h1>@${esc(userOf(a.tiktok))}</h1>
+  <p class="sub">→ ${esc(pageName(a.page_id) || "No Page selected")} · <a href="${esc(a.tiktok)}" target="_blank">Open TikTok</a></p>
+  <div class="row"><button class="btn small primary" data-up="${a.id}">Upload next video now</button><button class="btn small" data-scan="${a.id}">Check for new videos</button><button class="btn small" id="a_dedupe">Re-check Page videos</button><a class="btn small" href="#edit/${a.id}">Edit</a></div>
+  <div class="tabs">${tab("","All")}${tab("queue","Queue ("+s.queue+")")}${tab("uploaded","Uploaded ("+s.up+")")}${tab("failed","Failed ("+s.fail+")")}${tab("skipped","Skipped")}</div>
+  <div class="card">${vids.length ? vids.map(v => { const [l,c] = ST_LABEL[v.status] || [v.status,""]; return `
+    <div class="vid">
+      <div><a href="${esc(v.url)}" target="_blank">#${esc(v.id.slice(-6))}</a> <span class="pill ${c}">${l}</span> <span class="meta">${esc((v.uploaded||v.found||"").slice(5))}</span></div>
+      <div class="meta">${esc(short(v.caption, 90)) || "—"}</div>
+      ${v.error ? `<div class="meta lv-error">${esc(short(v.error, 160))}</div>` : ""}
+      <div class="row" style="margin-top:6px">
+        ${["new","retry","failed","skipped"].includes(v.status) ? `<button class="btn small" data-va="upload_video" data-v="${v.id}">Upload</button>` : ""}
+        ${["failed","skipped","uploaded"].includes(v.status) ? `<button class="btn small" data-va="retry" data-v="${v.id}">Re-queue</button>` : ""}
+        ${["new","retry"].includes(v.status) ? `<button class="btn small danger" data-va="skip" data-v="${v.id}">Skip</button>` : ""}
+      </div>
+    </div>`; }).join("") : `<div class="empty">No videos yet. Tap "Check for new videos".</div>`}</div>
+  <h2>Add a specific video</h2>
+  <div class="card"><input id="a_url" placeholder="https://www.tiktok.com/@.../video/123..." autocapitalize="off"><div style="margin-top:10px"><button class="btn primary full" id="a_add">Add to queue</button></div></div>`;
+};
+V.acc.bind = (id) => {
+  document.querySelectorAll("[data-vf]").forEach(b => b.onclick = () => { VF = b.dataset.vf; render(); });
+  document.querySelectorAll("[data-up]").forEach(b => b.onclick = () => act(() => dispatch("upload_now", id), b));
+  document.querySelectorAll("[data-scan]").forEach(b => b.onclick = () => act(() => dispatch("scan", id), b));
+  document.querySelectorAll("[data-va]").forEach(b => b.onclick = () => act(() => dispatch(b.dataset.va, id, b.dataset.v), b));
+  const dd = $("#a_dedupe"); if (dd) dd.onclick = (e) => act(() => dispatch("dedupe", id), e.target);
+  const add = $("#a_add"); if (add) add.onclick = (e) => act(async () => {
+    const u = $("#a_url").value.trim(); if (!/\/video\/\d+/.test(u)) throw new Error("Enter a valid video link (must contain /video/)");
+    await dispatch("add_video", id, u.split("?")[0]); $("#a_url").value = "";
+  }, e.target);
+};
+
+const FB_SCOPES = "pages_show_list,pages_read_engagement,pages_manage_posts,business_management";
+function redirectUri(){ return location.origin + location.pathname; }
+async function fbJSON(u){ const r = await fetch(u); const d = await r.json(); if (d.error) throw new Error("Facebook: " + d.error.message); return d; }
+async function fbPagesFor(userToken){
+  const ver = CFG.graph_version || "v23.0";
+  let url = `https://graph.facebook.com/${ver}/me/accounts?fields=id,name,access_token&limit=100&access_token=${encodeURIComponent(userToken)}`, pages = [];
+  while (url){ const d = await fbJSON(url); pages = pages.concat(d.data || []); url = (d.paging||{}).next; }
+  return pages;
+}
+async function savePagesFromFacebook(pages, userToken){
+  const tokens = await getTokens();
+  pages.forEach(p => {
+    tokens[p.id] = p.access_token;
+    const ex = CFG.pages.find(x => String(x.id) === String(p.id));
+    if (ex) { ex.name = p.name; ex.via = "facebook"; } else CFG.pages.push({ id: p.id, name: p.name, via: "facebook" });
+  });
+  CFG.tokens_enc = await encryptJSON(tokens, S.pass);
+  if (userToken) CFG.fb_user_enc = await encryptJSON({ user_token: userToken }, S.pass);
+}
+function startFacebookLogin(){
+  const ver = CFG.graph_version || "v23.0";
+  try { sessionStorage.setItem("ap_fb_state", String(Date.now())); } catch(e){}
+  location.href = `https://www.facebook.com/${ver}/dialog/oauth?client_id=${encodeURIComponent(CFG.fb_app_id)}` +
+    `&redirect_uri=${encodeURIComponent(redirectUri())}&response_type=token&scope=${FB_SCOPES}` +
+    `&state=${encodeURIComponent(sessionStorage.getItem("ap_fb_state")||"x")}`;
+}
+async function finishFacebookLogin(){
+  let short = ""; try { short = sessionStorage.getItem("ap_fb_token") || ""; } catch(e){}
+  if (!short) return;
+  try { sessionStorage.removeItem("ap_fb_token"); } catch(e){}
+  const ver = CFG.graph_version || "v23.0";
+  let userToken = short;
+  if (CFG.fb_secret_enc){
+    const sec = (await decryptJSON(CFG.fb_secret_enc, S.pass)).secret;
+    userToken = (await fbJSON(`https://graph.facebook.com/${ver}/oauth/access_token?grant_type=fb_exchange_token&client_id=${encodeURIComponent(CFG.fb_app_id)}&client_secret=${encodeURIComponent(sec)}&fb_exchange_token=${encodeURIComponent(short)}`)).access_token;
+  }
+  const pages = await fbPagesFor(userToken);
+  await savePagesFromFacebook(pages, userToken);
+  CFG.fb_connected_at = new Date().toISOString().slice(0, 10);
+  await saveConfig("connect facebook");
+  toast(`Your Facebook account is connected ✓ ${pages.length} Page${pages.length===1?"":"s"} found`);
+  location.hash = "#pages"; render();
+}
+
+V.pages = () => {
+  const connected = !!(CFG.fb_user_enc || CFG.tokens_enc);
+  const ready = !!CFG.fb_app_id;
+  const pages = allPages();
+  return `
+  <h1>Facebook</h1>
+  <p class="sub">Connect your Facebook once. All your Pages show up here automatically, including new ones you create later.</p>
+
+  <div class="card ${connected ? "" : "notice"}" style="text-align:center">
+    <div style="font-size:40px;line-height:1.2">${connected ? "✅" : "📘"}</div>
+    <div class="name" style="margin:6px 0 4px">${connected ? "Your Facebook account is connected" : "Connect your Facebook account"}</div>
+    <div class="meta" style="margin-bottom:12px">${connected ? `Connected ${esc(CFG.fb_connected_at || "")}. Reconnect anytime if something stops working.` : "Tap the button, log in to Facebook and allow access to your Pages."}</div>
+    <button class="btn primary full" id="fb_connect" style="background:#1877f2;border-color:#1877f2">${connected ? "Reconnect Facebook" : "Connect Facebook"}</button>
+    ${connected ? `<div style="margin-top:8px"><button class="btn full" id="fb_refresh">↻ Refresh my Pages</button></div>` : ""}
+  </div>
+
+  <h2>Your Pages (${pages.length})</h2>
+  <div class="card">${pages.length ? pages.map(p => `
+    <div class="vid"><div class="name">${esc(p.name)}</div><div class="meta">ID ${esc(p.id)} · ${CFG.accounts.filter(a => String(a.page_id)===String(p.id)).length} TikTok accounts</div>
+    <div class="row" style="margin-top:6px"><button class="btn small" data-pt="${esc(p.id)}">Test</button>${CFG.pages.find(x => String(x.id)===String(p.id)) ? `<button class="btn small danger" data-pd="${esc(p.id)}">Hide</button>` : ""}</div></div>`).join("")
+    : `<div class="empty">${connected ? "No Pages found yet. Create a Page on Facebook, then tap “Refresh my Pages”." : "Connect Facebook to see your Pages here."}</div>`}</div>
+
+  <details style="margin-top:18px" ${ready ? "" : "open"}><summary class="meta"><b>${ready ? "Facebook app settings" : "One-time setup (needed before the Connect button works)"}</b></summary>
+  <div class="card" style="margin-top:10px">
+    ${ready ? `<div class="meta">✅ App ID saved: <code>${esc(CFG.fb_app_id)}</code></div>` : `<div class="meta">The Connect button needs your own free Facebook app (from a verified Facebook developer account). Do this once:</div>`}
+    <ol class="meta" style="padding-left:18px;margin:10px 0">
+      <li>Open <a href="https://developers.facebook.com/apps" target="_blank">developers.facebook.com/apps</a> → <b>Create App</b> → choose the Pages use case (“Manage everything on your Page”).</li>
+      <li>In the app go to <b>Facebook Login</b> settings → <b>Valid OAuth Redirect URIs</b> and add this link:<br><code style="word-break:break-all">${esc(redirectUri())}</code> <button class="btn small" id="fb_copyuri">Copy</button></li>
+      <li><b>App settings → Basic</b>: copy the <b>App ID</b> and <b>App Secret</b> below and Save.</li>
+    </ol>
+    <label>App ID</label><input id="fb_appid" inputmode="numeric" value="${esc(CFG.fb_app_id || "")}">
+    <label>App Secret <div class="hint">Saved locked with your password</div></label><input id="fb_secret" type="password" placeholder="${CFG.fb_secret_enc ? "•••••• saved" : ""}">
+    <div style="margin-top:12px"><button class="btn full" id="fb_saveapp">Save app settings</button></div>
+  </div></details>`;
+};
+V.pages.bind = () => {
+  $("#fb_connect").onclick = (e) => act(async () => {
+    if (!CFG.fb_app_id) { const d = document.querySelector("details"); if (d) d.open = true; d && d.scrollIntoView({behavior:"smooth"});
+      throw new Error("First do the one-time setup below (it needs a verified Facebook developer account)"); }
+    if (!CFG.fb_secret_enc) throw new Error("Add the App Secret in the setup below, otherwise the connection expires in 1 hour");
+    startFacebookLogin();
+  }, e.target);
+  const rf = $("#fb_refresh"); if (rf) rf.onclick = (e) => act(async () => {
+    if (!CFG.fb_user_enc) throw new Error("Please tap Reconnect Facebook");
+    const ut = (await decryptJSON(CFG.fb_user_enc, S.pass)).user_token;
+    let pages;
+    try { pages = await fbPagesFor(ut); } catch(err){ throw new Error("Facebook connection expired, please tap Reconnect Facebook"); }
+    await savePagesFromFacebook(pages, null);
+    await saveConfig("refresh pages"); toast(`${pages.length} Page${pages.length===1?"":"s"} found ✓`); render();
+  }, e.target);
+  const cu = $("#fb_copyuri"); if (cu) cu.onclick = () => { try { navigator.clipboard.writeText(redirectUri()); toast("Link copied ✓"); } catch(e){ toast(redirectUri()); } };
+  $("#fb_saveapp").onclick = (e) => act(async () => {
+    const id = $("#fb_appid").value.replace(/\D/g, ""), sec = $("#fb_secret").value.trim();
+    if (id.length < 8) throw new Error("Enter the App ID (numbers only)");
+    CFG.fb_app_id = id;
+    if (sec) CFG.fb_secret_enc = await encryptJSON({ secret: sec }, S.pass);
+    if (!CFG.fb_secret_enc) throw new Error("Enter the App Secret too");
+    await saveConfig("facebook app settings"); toast("Saved ✓ Now tap Connect Facebook"); render();
+  }, e.target);
+  document.querySelectorAll("[data-pt]").forEach(b => b.onclick = () => act(async () => {
+    const t = (await getTokens())[b.dataset.pt]; if (!t) throw new Error("No access for this Page yet. Tap Refresh my Pages or Reconnect Facebook");
+    const d = await fbJSON(`https://graph.facebook.com/${CFG.graph_version||"v23.0"}/${b.dataset.pt}?fields=name&access_token=${encodeURIComponent(t)}`);
+    toast(`'${d.name}' is connected correctly ✓`);
+  }, b));
+  document.querySelectorAll("[data-pd]").forEach(b => b.onclick = () => { if (!confirm("Hide this Page from the list?")) return; act(async () => {
+    CFG.pages = CFG.pages.filter(p => String(p.id) !== b.dataset.pd);
+    CFG.accounts.forEach(a => { if (String(a.page_id) === b.dataset.pd) a.page_id = ""; });
+    await saveConfig("hide page"); toast("Page hidden"); render();
+  }, b); });
+};
+
+let LF = "";
+V.logs = () => {
+  const users = Object.fromEntries(CFG.accounts.map(a => [a.id, "@" + userOf(a.tiktok) + ": "]));
+  const logs = (STATE.log||[]).filter(l => !LF || l.l === LF);
+  return `
+  <h1>Logs</h1><p class="sub">What the tool did and when.</p>
+  <div class="tabs"><button class="btn small ${!LF?"primary":""}" data-lf="">All</button><button class="btn small ${LF==="success"?"primary":""}" data-lf="success">Uploads</button><button class="btn small ${LF==="error"?"primary":""}" data-lf="error">Errors</button><button class="btn small" id="l_ref">↻</button></div>
+  <div class="card">${logs.length ? logs.map(l => `<div class="log lv-${esc(l.l)}"><span class="t">${esc(l.t.slice(5))}</span>${esc((users[l.a]||"") + l.m)}</div>`).join("") : `<div class="empty">No logs yet</div>`}</div>
+  <h2>GitHub runs</h2>
+  <div class="card">${RUNS.length ? RUNS.map(r => `<div class="log"><span class="t">${esc(new Date(r.created_at).toLocaleString())}</span>${esc(r.event)} · ${esc(r.status==="completed" ? r.conclusion : r.status)}</div>`).join("") : `<div class="empty">No runs yet</div>`}
+    <div style="margin-top:10px"><a class="btn small" target="_blank" href="https://github.com/${esc(S.repo)}/actions">Full details on GitHub</a></div></div>`;
+};
+V.logs.bind = () => {
+  document.querySelectorAll("[data-lf]").forEach(b => b.onclick = () => { LF = b.dataset.lf; render(); });
+  $("#l_ref").onclick = (e) => act(async () => { await loadAll(); render(); }, e.target);
+};
+
+V.settings = () => `
+  <h1>Settings</h1>
+  <div class="card">
+    <label>Check TikTok every (minutes)</label><input id="c_chk" type="number" min="30" value="${CFG.check_minutes||60}">
+    <label>Latest videos to look at per check</label><input id="c_lim" type="number" min="5" max="200" value="${CFG.scan_limit||30}">
+    <label>Retries on failure</label><input id="c_try" type="number" min="1" max="10" value="${CFG.max_attempts||3}">
+    <label>Time zone</label><input id="c_tz" value="${esc(CFG.timezone||"Asia/Karachi")}">
+    <label>Gap between Pages (minutes) <div class="hint">Pages upload one after another with a random gap in this range, so Facebook doesn't see 30 posts in the same minute. Safe default: 3 to 6.</div></label>
+    <div class="row" style="flex-wrap:nowrap"><input id="c_gmin" type="number" min="1" max="30" value="${CFG.gap_min||3}"><span style="align-self:center">to</span><input id="c_gmax" type="number" min="1" max="30" value="${CFG.gap_max||6}"></div>
+    <label>Facebook Graph API version <div class="hint">If Facebook retires this version, enter a newer one, e.g. v24.0</div></label><input id="c_ver" value="${esc(CFG.graph_version||"v23.0")}">
+    <div style="margin-top:14px"><button class="btn primary full" id="c_save">Save</button></div>
+  </div>
+  <h2>Phone notifications 🔔</h2>
+  <div class="card">
+    <div class="meta">Get a notification from <b>this app</b> when videos upload, a video fails, or Facebook pauses uploads. No extra app needed.</div>
+    <div class="meta" style="margin-top:8px">Status: <b id="p_stat">checking…</b></div>
+    <div class="hint">Open this app from its Home Screen icon (not from Chrome/Safari), then tap the button. iPhone will ask “Allow notifications” → tap Allow.</div>
+    <div style="margin-top:10px"><button class="btn primary full" id="p_on">🔔 Turn on notifications on this phone</button></div>
+    <div class="row" style="margin-top:8px"><button class="btn small" id="p_test">Send test</button></div>
+    <label class="check"><input type="checkbox" id="n_succ" ${CFG.notify_success!==false?"checked":""}><span>Also notify for successful uploads<div class="hint">Errors and Facebook pauses are always sent</div></span></label>
+  </div>
+  <h2>Connection</h2>
+  <div class="card"><div class="meta">Repo: <b>${esc(S.repo)}</b></div><div style="margin-top:10px" class="row"><a class="btn small" href="#setup">Change GitHub token / password</a></div></div>`;
+V.settings.bind = () => {
+  $("#c_save").onclick = (e) => act(async () => {
+    Object.assign(CFG, { check_minutes: Math.max(30, +$("#c_chk").value||60), scan_limit: +$("#c_lim").value||30, max_attempts: +$("#c_try").value||3,
+                         timezone: $("#c_tz").value.trim()||"Asia/Karachi", graph_version: $("#c_ver").value.trim()||"v23.0",
+                         gap_min: Math.max(1, +$("#c_gmin").value||3), gap_max: Math.max(+$("#c_gmin").value||3, +$("#c_gmax").value||6) });
+    await saveConfig("settings"); toast("Saved ✓");
+  }, e.target);
+  pushStatus().then(t => { const el = $("#p_stat"); if (el) el.textContent = t; });
+  $("#p_on").onclick = (e) => act(async () => { await enablePush(); toast("Notifications are ON ✓ Tap Send test"); const el = $("#p_stat"); if (el) el.textContent = await pushStatus(); }, e.target);
+  $("#p_test").onclick = (e) => act(async () => {
+    if (!CFG.push_enc) throw new Error("First tap Turn on notifications");
+    await gh(`/repos/${S.repo}/actions/workflows/autopost.yml/dispatches`, { method:"POST", body: JSON.stringify({ ref:"main", inputs:{ action:"notify_test", account:"", video:"" } }) });
+    toast("Test requested ✓ The notification comes in 1-3 minutes");
+  }, e.target);
+  $("#n_succ").onchange = (e) => act(async () => { CFG.notify_success = e.target.checked; await saveConfig("notifications"); toast("Saved ✓"); });
+};
+
+// ---------------------------------------------------------------- render
+function render(){
+  let { name, id } = route();
+  if (!S.token || !S.repo || !S.pass) name = "setup";
+  if (name !== "setup" && !CFG) return;
+  const view = V[name] || V.home;
+  $("#app").innerHTML = view(id);
+  if (view.bind) view.bind(id);
+  document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.r === name || (name==="acc"||name==="edit") && a.dataset.r==="home" || name==="bulk" && a.dataset.r==="add"));
+  window.scrollTo(0, 0);
+}
+
+// neeche kheench kar refresh (pull to refresh)
+let y0 = null;
+window.addEventListener("touchstart", e => { y0 = window.scrollY === 0 ? e.touches[0].clientY : null; }, { passive: true });
+window.addEventListener("touchend", e => { if (y0 !== null && e.changedTouches[0].clientY - y0 > 110 && S.token && route().name!=="setup") act(async () => { await loadAll(); render(); toast("Refreshed ✓"); }); y0 = null; });
+document.addEventListener("visibilitychange", () => { if (!document.hidden && CFG) loadAll().then(render).catch(()=>{}); });
+
+(function captureFacebookRedirect(){
+  const h = location.hash || "", q = new URLSearchParams(location.search);
+  if (h.includes("access_token=")) {
+    const p = new URLSearchParams(h.slice(1));
+    try { sessionStorage.setItem("ap_fb_token", p.get("access_token") || ""); } catch(e){}
+    history.replaceState(null, "", location.pathname + "#pages");
+  } else if (q.get("error") || q.get("error_reason")) {
+    history.replaceState(null, "", location.pathname + "#pages");
+    setTimeout(() => toast("Facebook login was cancelled", true), 800);
+  }
+})();
+(async () => {
+  if (S.token && S.repo && S.pass){
+    try { await loadAll(); } catch(e){ toast(e.message, true); location.hash = "#setup"; }
+    if (CFG) { try { await finishFacebookLogin(); } catch(e){ toast(e.message, true); } }
+  }
+  render();
+})();
+</script>
+</body>
+</html>

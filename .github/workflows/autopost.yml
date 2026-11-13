@@ -1,0 +1,62 @@
+name: AutoPoster
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "auto / scan / upload_now / upload_video / retry / skip / add_video / dedupe / notify_test"
+        required: false
+        default: "auto"
+      account:
+        required: false
+        default: ""
+      video:
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: autopost
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          pip install -U yt-dlp requests cryptography
+          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+
+      - name: Run engine
+        env:
+          APP_KEY: ${{ secrets.APP_KEY }}
+          ACTION: ${{ inputs.action || 'auto' }}
+          ACCOUNT: ${{ inputs.account }}
+          VIDEO: ${{ inputs.video }}
+        run: python autopost.py
+
+      - name: Save state
+        if: always()
+        run: |
+          git config user.name "autoposter-bot"
+          git config user.email "autoposter-bot@users.noreply.github.com"
+          git add state.json
+          if [ -f fp.json ]; then git add fp.json; fi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "state update"
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase -X theirs || true
+          done
