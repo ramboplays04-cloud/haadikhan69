@@ -2,6 +2,18 @@
  "fb_conn": "e3b0c44298fc1c14",
  "log": [
   {
+   "t": "2026-11-27 05:26",
+   "l": "error",
+   "a": "",
+   "m": "Facebook is not connected yet (see the Pages tab in the app)"
+  },
+  {
+   "t": "2026-11-27 05:26",
+   "l": "error",
+   "a": "",
+   "m": "tool did not run for 8.8 hours"
+  },
+  {
    "t": "2026-11-26 20:38",
    "l": "error",
    "a": "",
@@ -524,6 +536,6 @@
    "m": "Facebook is not connected yet (see the Pages tab in the app)"
   }
  ],
- "last_run": "2026-11-26 20:38",
+ "last_run": "2026-11-27 05:26",
  "last_action": "auto"
 }
